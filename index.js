@@ -3,7 +3,7 @@ var EasyModal;
 (function(){
     'use strict';
 
-    EasyModal = function(modalContentID, modalButtonID) {
+    EasyModal = function EasyModal(modalContentID, modalButtonID) {
 
         if((arguments[0] === undefined) || (arguments[1] === undefined))
             throw new Error('Expected two arguments, found ' + arguments.length);
@@ -74,6 +74,24 @@ var EasyModal;
             );
 
         })(this.modalElements);
+
+        // create the stylesheet
+
+        var i,
+            dss = document.styleSheets,
+            title = this.constructor.name,
+            ss = null;
+
+        // is there a stylesheet already?
+        for (i = 0; i < dss.length; i++)
+            if(dss[i].title === title)
+                ss = dss[i];
+
+        if (!ss){
+            ss = document.createElement('style');
+            document.head.append(ss);
+            ss.title = title;
+        }
 
     };
 

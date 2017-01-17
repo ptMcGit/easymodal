@@ -111,6 +111,20 @@ describe('EasyModal', function(){
 
         });
 
+        describe('stylesheet', function(){
+            it('creates a stylesheet with a title that is the name of the module', function(){
+                var i,
+                    dss = document.styleSheets,
+                    ss = null;
+
+                for(i = 0; i < dss.length; i ++)
+                    if(i.title === em.constructor.name)
+                        ss = dss[i];
+
+                expect(ss).to.exist;
+            });
+
+        });
 
     });
 
