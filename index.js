@@ -23,14 +23,13 @@ var EasyModal;
         // insert document fragment in document
 
         (function(me){
+
             var addPrefix = function(name){
                 return me.modalContent.id + '-' + name;
             };
 
             var e,
-//                elements = {},
                 docFrag = document.createDocumentFragment();
-
 
             var createElement = function(kind, id){
                 var renamed = id.replace(/([A-Z]){1}/g,
@@ -45,12 +44,10 @@ var EasyModal;
             };
 
             createElement('div', 'modalBox');
-            createElement('span', 'modalClose');
 
+            createElement('span', 'modalClose');
             // create the 'X'
-//            console.log('elements.modalClose: ', me);
-            me.modalClose.appendChild(
-                document.createTextNode("\u2573"));
+            me.modalClose.innerText = "\u2573";
 
             createElement('div', 'modalOutside');
 
