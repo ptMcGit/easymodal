@@ -1,4 +1,3 @@
 window.addEventListener('load', function(){
-    require('../index.js');
-    require('./specs/index_spec.js');
+    require('./specs/easy-modal_spec.js');
 }, false)
