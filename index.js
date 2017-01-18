@@ -9,17 +9,38 @@ var EasyModal;
             throw new Error('Expected two arguments, found ' + arguments.length);
 
         function ElementWrapper(element){
-            if(element)
+            if(element) {
                 this.element = element;
+                this.id = element.id;
+                this.classList = element.classList;
+                this.style = element.style;
+                this.innerText = element.innerText;
+            }
             else
                 throw new Error();
         }
 
+        ElementWrapper.prototype.setInnerText = function(text){
+            if(text)
+                this.element.innerText = text;
+
+            return this.element.innerText;
+        };
+
+        ElementWrapper.prototype.insertAdjacentElement = function(){
+            this.element.insertAdjacentElement.call(this.element, arguments[0], arguments[1].element);
+        };
+
+        ElementWrapper.prototype.addEventListener = function(){
+            this.element.addEventListener.apply(this.element, arguments);
+        };
+
         var createElementWrapper = function(name, element){
-            var e = document.create(element),
-                e.id = modalContent.id + '-' + name,
-                me = new ElementWrapper(e);
-            e.classList.add(name)
+            var e = document.createElement(element);
+            e.id = modalContent.id + '-' + name;
+            e.classList.add(name);
+
+            var me = new ElementWrapper(e);
             return me;
         };
 
@@ -36,23 +57,23 @@ var EasyModal;
         var modalBox = createElementWrapper('modal-box', 'div');
         var modalClose = createElementWrapper('modal-close', 'span');
         // create the 'X'
-        modalClose.innerText = "\u2573";
+        var placeholder = createElementWrapper('placeholder', 'span');
 
         // create a document fragment add elements needed to create modal
         // insert document fragment in document
 
-        var placeholder = document.createElement('span'),
-            docFrag = document.createDocumentFragment();
+        var docFrag = document.createDocumentFragment();
+        docFrag.append(modalOutside.element);
 
-        modalContent.insertAdjacentElement('beforebegin', placeholder)
+        modalOutside.insertAdjacentElement('afterbegin', modalBox);
+        modalBox.insertAdjacentElement('afterbegin', modalClose);
 
-        docFrag.append(modalContent.element);
-        docFrag.append(
+        modalContent.insertAdjacentElement('beforebegin', placeholder);
+        modalClose.insertAdjacentElement('afterend', modalContent);
 
-        me.modalOutside.insertAdjacentElement(
-                "afterbegin",
-                me.modalBox
-            );
+        placeholder.insertAdjacentElement('beforebegin', modalOutside);
+
+        modalClose.setInnerText("\u2573");
 
             me.modalBox.insertAdjacentElement(
                 "afterbegin",
