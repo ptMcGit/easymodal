@@ -1,3 +1,5 @@
+// Create a modal from an existing div and button
+
 var EasyModal;
 
 (function(){
@@ -31,11 +33,10 @@ var EasyModal;
         var modalOutside = createElementWrapper('modal-outside','div');
         var modalBox = createElementWrapper('modal-box', 'div');
         var modalClose = createElementWrapper('modal-close', 'span');
-        // create the 'X'
+
         var placeholder = createElementWrapper('placeholder', 'span');
 
         // create a document fragment add elements needed to create modal
-        // insert document fragment in document
 
         var docFrag = document.createDocumentFragment();
         docFrag.append(modalOutside.element);
@@ -46,11 +47,13 @@ var EasyModal;
         modalContent.insertAdjacentElement('beforebegin', placeholder);
         modalClose.insertAdjacentElement('afterend', modalContent);
 
+        // insert document fragment in document
         placeholder.insertAdjacentElement('beforebegin', modalOutside);
 
+        // create the 'X'
         modalClose.setInnerText("\u2573");
 
-        // add event listeners
+        // ADD EVENT LISTENERS
 
         modalButton.addEventListener(
             "click",
@@ -74,14 +77,14 @@ var EasyModal;
             false
         );
 
-        // create the stylesheet
+        // CREATE THE STYLESHEET
 
         var i,
             dss = document.styleSheets,
             title = this.constructor.name,
             ss = null;
 
-        // is there a stylesheet already?
+        // use an existing stylesheet
 
         for (i = 0; i < dss.length; i++)
             if(dss[i].title === title)
