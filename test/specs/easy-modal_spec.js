@@ -147,7 +147,7 @@ describe('EasyModal', function(){
 
         var dss = document.styleSheets,
             ss,
-            cssRules;
+            cssRuleSelectors;
 
         before(function(){
 
@@ -157,9 +157,15 @@ describe('EasyModal', function(){
                         ss = dss[i];
             })();
 
-            cssRules = Object.values(ss.cssRules)
-                .map(function(a){
-                    return a.selectorText; })
+
+            cssRuleSelectors = (function(){
+                var selectorNames = []
+                var i;
+                for(i = 0; i < ss.cssRules.length; i++)
+                    selectorNames.push(ss.cssRules[i].selectorText);
+
+                return selectorNames;
+            })();
 
         });
 
@@ -168,27 +174,27 @@ describe('EasyModal', function(){
         });
 
         it('creates style rules for modal outside', function(){
-            expect(cssRules).to.contain('#' + arg1 + '-modal-outside');
+            expect(cssRuleSelectors).to.contain('#' + arg1 + '-modal-outside');
         });
 
         it('creates style rules for modal box', function(){
-            expect(cssRules).to.contain('#' + arg1 + '-modal-box');
+            expect(cssRuleSelectors).to.contain('#' + arg1 + '-modal-box');
         });
 
         it('creates style rules for modal content', function(){
-            expect(cssRules).to.contain('#' + arg1);
+            expect(cssRuleSelectors).to.contain('#' + arg1);
         });
 
         it('creates style rules for modal close', function(){
-            expect(cssRules).to.contain('#' + arg1 + '-modal-close');
+            expect(cssRuleSelectors).to.contain('#' + arg1 + '-modal-close');
         });
 
         it('creates style rules for modal close :hover', function(){
-            expect(cssRules).to.contain('#' + arg1 + '-modal-close:hover');
+            expect(cssRuleSelectors).to.contain('#' + arg1 + '-modal-close:hover');
         });
 
         it('creates style rules for modal close :focus', function(){
-            expect(cssRules).to.contain('#' + arg1 + '-modal-close:focus');
+            expect(cssRuleSelectors).to.contain('#' + arg1 + '-modal-close:focus');
         });
 
         it('does not add the stylesheet to the end of the stylesheet list', function(){
