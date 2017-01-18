@@ -8,52 +8,48 @@ var EasyModal;
         if((arguments[0] === undefined) || (arguments[1] === undefined))
             throw new Error('Expected two arguments, found ' + arguments.length);
 
-        this.modalElements = {
-            'modalContent': document.querySelector(modalContentID),
-            'modalButton': document.querySelector(modalButtonID)
+        function ElementWrapper(element){
+            if(element)
+                this.element = element;
+            else
+                throw new Error();
+        }
+
+        var createElementWrapper = function(name, element){
+            var e = document.create(element),
+                e.id = modalContent.id + '-' + name,
+                me = new ElementWrapper(e);
+            e.classList.add(name)
+            return me;
         };
 
-        (function(me){
-            if(!(me.modalContent && me.modalButton )){
-                throw new Error('Did not find one of the element params in document.');
-            }
-       })(this.modalElements);
+        var modalContent = new ElementWrapper(document.querySelector(arguments[0]));
+        var modalButton = new ElementWrapper(document.querySelector(arguments[1]));
+
+        if(!(modalContent && modalButton ))
+            throw new Error('Did not find one of the element params in document.');
+
+        modalContent.classList.add('modal-content');
+        modalButton.classList.add('modal-button');
+
+        var modalOutside = createElementWrapper('modal-outside','div');
+        var modalBox = createElementWrapper('modal-box', 'div');
+        var modalClose = createElementWrapper('modal-close', 'span');
+        // create the 'X'
+        modalClose.innerText = "\u2573";
 
         // create a document fragment add elements needed to create modal
         // insert document fragment in document
 
-        (function(me){
+        var placeholder = document.createElement('span'),
+            docFrag = document.createDocumentFragment();
 
-            var addPrefix = function(name){
-                return me.modalContent.id + '-' + name;
-            };
+        modalContent.insertAdjacentElement('beforebegin', placeholder)
 
-            var e,
-                docFrag = document.createDocumentFragment();
+        docFrag.append(modalContent.element);
+        docFrag.append(
 
-            var createElement = function(kind, id){
-                var renamed = id.replace(/([A-Z]){1}/g,
-                                         function(full, a){
-                                             return '-' + a.toLowerCase();});
-
-                e = me[id] = document.createElement(kind);
-                docFrag.append(e);
-
-                e.id = addPrefix(renamed);
-                e.classList.add(renamed);
-            };
-
-            createElement('div', 'modalBox');
-
-            createElement('span', 'modalClose');
-            // create the 'X'
-            me.modalClose.innerText = "\u2573";
-
-            createElement('div', 'modalOutside');
-
-            // nest elements relative to modal_element
-
-            me.modalOutside.insertAdjacentElement(
+        me.modalOutside.insertAdjacentElement(
                 "afterbegin",
                 me.modalBox
             );
