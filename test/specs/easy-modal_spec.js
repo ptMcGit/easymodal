@@ -142,16 +142,51 @@ describe('EasyModal', function(){
         });
 
         describe('stylesheet', function(){
+
+            var dss = document.styleSheets,
+                ss,
+                cssRules;
+
+            before(function(){
+
+                (function(){
+                    for(i = 0; i < dss.length; i ++)
+                        if(dss[i].title === em.constructor.name)
+                            ss = dss[i];
+                })();
+
+                cssRules = Object.values(ss.cssRules)
+                    .map(function(a){
+                        return a.selectorText; })
+
+            });
+
             it('creates a stylesheet with a title that is the name of the module', function(){
-                var i,
-                    dss = document.styleSheets,
-                    ss = null;
-
-                for(i = 0; i < dss.length; i ++)
-                    if(i.title === em.constructor.name)
-                        ss = dss[i];
-
                 expect(ss).to.exist;
+            });
+
+            it('creates style rules for modal outside', function(){
+                expect(cssRules).to.contain('#' + arg1 + '-modal-outside');
+            });
+
+            it('creates style rules for modal box', function(){
+                expect(cssRules).to.contain('#' + arg1 + '-modal-box');
+            });
+
+            it('creates style rules for modal content', function(){
+                expect(cssRules).to.contain('#' + arg1);
+            });
+
+            it('creates style rules for modal close', function(){
+                expect(cssRules).to.contain('#' + arg1 + '-modal-close');
+            });
+
+            it('creates style rules for modal close :hover', function(){
+                expect(cssRules).to.contain('#' + arg1 + '-modal-close:hover');
+            });
+
+            it('creates style rules for modal close :focus', function(){
+                expect(cssRules).to.contain('#' + arg1 + '-modal-close:focus');
             });
 
         });

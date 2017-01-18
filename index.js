@@ -82,6 +82,7 @@ var EasyModal;
             ss = null;
 
         // is there a stylesheet already?
+
         for (i = 0; i < dss.length; i++)
             if(dss[i].title === title)
                 ss = dss[i];
@@ -90,6 +91,59 @@ var EasyModal;
             ss = document.createElement('style');
             document.head.append(ss);
             ss.title = title;
+            addStyles(ss);
+        }
+
+        function addStyles(styleSheet){
+            var ss = styleSheet.sheet;
+
+            ss.insertRule('#' + modalOutside.id + '{' +
+                          'display: none;' +
+                          'position: fixed;' +
+                          'z-index: 1;' +
+                          'padding-top: 1%;' +
+                          'left: 0;' +
+                          'top: 0;' +
+                          'width: 100%;' +
+                          'height: 100%;' +
+                          'overflow: auto;' +
+                          'background-color: rgb(0,0,0);' +
+                          'background-color: rgba(0,0,0,0.4);' +
+                          '}', 0);
+
+            ss.insertRule('#' + modalBox.id + '{' +
+                          'background-color: #534c48;' +
+                          'margin: auto;' +
+                          'padding: 1%;' +
+                          'border: 1px solid #888;' +
+                          'width: 80%;' +
+                          'max-width: 800px;' +
+                          'border-radius: 2px;' +
+                          'border-bottom: 5px solid #606060;' +
+                          'opacity: .9;' +
+                          '}', 0);
+
+            ss.insertRule('#' + modalContent.id + '{' +
+                          'padding: 10%;' +
+                          '}', 0);
+
+            ss.insertRule('#' + modalClose.id + '{' +
+                          'font-family: Arial, san-serif;' +
+                          'color: #aaaaaa;' +
+                          'float: right;' +
+                          'font-size: 28px;' +
+                          'font-weight: bold;' +
+                          '}', 0);
+
+            ss.insertRule('#' + modalClose.id + ':hover' + '{' +
+                          'text-decoration: none;' +
+                          'cursor: pointer;' +
+                          '}', 0);
+
+            ss.insertRule('#' + modalClose.id + ':focus' + '{' +
+                          'text-decoration: none;' +
+                          'cursor: pointer;' +
+                          '}', 0);
         }
 
     };
