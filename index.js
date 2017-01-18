@@ -3,46 +3,12 @@ var EasyModal;
 (function(){
     'use strict';
 
+    var ElementWrapper = require('./lib/element-wrapper.js');
+
     EasyModal = function EasyModal(modalContentID, modalButtonID) {
 
         if((arguments[0] === undefined) || (arguments[1] === undefined))
             throw new Error('Expected two arguments, found ' + arguments.length);
-
-        function ElementWrapper(element){
-            if(element) {
-                this.element = element;
-                this.id = element.id;
-                this.classList = element.classList;
-                this.style = element.style;
-                this.innerText = element.innerText;
-            }
-            else
-                throw new Error();
-        }
-
-        ElementWrapper.prototype.setInnerText = function(text){
-            if(text)
-                this.element.innerText = text;
-
-            return this.element.innerText;
-        };
-
-        ElementWrapper.prototype.insertAdjacentElement = function(){
-            this.element.insertAdjacentElement.call(this.element, arguments[0], arguments[1].element);
-        };
-
-        ElementWrapper.prototype.addEventListener = function(){
-            this.element.addEventListener.apply(this.element, arguments);
-        };
-
-        var createElementWrapper = function(name, element){
-            var e = document.createElement(element);
-            e.id = modalContent.id + '-' + name;
-            e.classList.add(name);
-
-            var me = new ElementWrapper(e);
-            return me;
-        };
 
         var modalContent = new ElementWrapper(document.querySelector(arguments[0]));
         var modalButton = new ElementWrapper(document.querySelector(arguments[1]));
@@ -52,6 +18,15 @@ var EasyModal;
 
         modalContent.classList.add('modal-content');
         modalButton.classList.add('modal-button');
+
+        function createElementWrapper(name, element){
+            var e = document.createElement(element);
+            e.id = modalContent.id + '-' + name;
+            e.classList.add(name);
+
+            var me = new ElementWrapper(e);
+            return me;
+        };
 
         var modalOutside = createElementWrapper('modal-outside','div');
         var modalBox = createElementWrapper('modal-box', 'div');
@@ -75,22 +50,6 @@ var EasyModal;
 
         modalClose.setInnerText("\u2573");
 
-            me.modalBox.insertAdjacentElement(
-                "afterbegin",
-                me.modalClose
-            );
-
-            me.modalContent.insertAdjacentElement(
-                "beforebegin",
-                me.modalOutside
-            );
-
-            me.modalClose.insertAdjacentElement(
-                "afterend",
-                me.modalContent
-            );
-
-        })(this.modalElements);
 
         // create the stylesheet
 
