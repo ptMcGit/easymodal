@@ -111,6 +111,36 @@ describe('EasyModal', function(){
 
         });
 
+        describe('event listeners', function(){
+
+            var display;
+
+            beforeEach(function(){
+                $('#' + arg2).click();
+                modalDisplay = function(){
+                    return $('#' + arg1 + '-modal-outside')[0].style.display;
+                };
+            });
+
+            it('click on modal button changes modal outside display to block', function(){
+                expect(modalDisplay())
+                    .to.equal('block');
+            });
+
+            it('click on modal close changes modal outside display to none', function(){
+                $('#' + arg1 + '-modal-close').click();
+                expect(modalDisplay())
+                    .to.equal('none');
+            });
+
+            it('click outside modal content changes modal outside display to none', function(){
+                $('#test-content-modal-outside')[0].click()
+                expect(modalDisplay())
+                    .to.equal('none');
+            });
+
+        });
+
         describe('stylesheet', function(){
             it('creates a stylesheet with a title that is the name of the module', function(){
                 var i,

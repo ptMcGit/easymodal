@@ -50,6 +50,29 @@ var EasyModal;
 
         modalClose.setInnerText("\u2573");
 
+        // add event listeners
+
+        modalButton.addEventListener(
+            "click",
+            function () { modalOutside.style.display = "block"; },
+            false
+        );
+
+        modalClose.addEventListener(
+            "click",
+            function () { modalOutside.style.display = "none"; },
+            false
+        );
+
+        window.addEventListener(
+            "click",
+            function (event) {
+                    if (event.target == modalOutside.element) {
+                        modalOutside.style.display = "none";
+                    }
+            },
+            false
+        );
 
         // create the stylesheet
 
