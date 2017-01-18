@@ -20,7 +20,7 @@ describe('EasyModal', function(){
         arg2 = 'test-button',
         em = new EasyModal('#' + arg1, '#' + arg2);
 
-    describe('elements', function(){
+    describe('property elements', function(){
         var element,
             name;
 
@@ -30,7 +30,7 @@ describe('EasyModal', function(){
             if(!element) throw new Error();
         };
 
-        describe(arg1, function(){
+        describe('modal content with name ' + arg1, function(){
             before(function(){
                 getElement('#' + arg1);
             });
@@ -111,84 +111,89 @@ describe('EasyModal', function(){
 
         });
 
-        describe('event listeners', function(){
+    });
 
-            var display;
+    describe('event listeners', function(){
 
-            beforeEach(function(){
-                $('#' + arg2).click();
-                modalDisplay = function(){
-                    return $('#' + arg1 + '-modal-outside')[0].style.display;
-                };
-            });
+        var display;
 
-            it('click on modal button changes modal outside display to block', function(){
-                expect(modalDisplay())
-                    .to.equal('block');
-            });
+        beforeEach(function(){
+            $('#' + arg2).click();
+            modalDisplay = function(){
+                return $('#' + arg1 + '-modal-outside')[0].style.display;
+            };
+        });
 
-            it('click on modal close changes modal outside display to none', function(){
-                $('#' + arg1 + '-modal-close').click();
-                expect(modalDisplay())
-                    .to.equal('none');
-            });
+        it('click on modal button changes modal outside display to block', function(){
+            expect(modalDisplay())
+                .to.equal('block');
+        });
 
-            it('click outside modal content changes modal outside display to none', function(){
-                $('#test-content-modal-outside')[0].click()
-                expect(modalDisplay())
-                    .to.equal('none');
-            });
+        it('click on modal close changes modal outside display to none', function(){
+            $('#' + arg1 + '-modal-close').click();
+            expect(modalDisplay())
+                .to.equal('none');
+        });
+
+        it('click outside modal content changes modal outside display to none', function(){
+            $('#test-content-modal-outside')[0].click()
+            expect(modalDisplay())
+                .to.equal('none');
+        });
+
+    });
+
+    describe('stylesheet', function(){
+
+        var dss = document.styleSheets,
+            ss,
+            cssRules;
+
+        before(function(){
+
+            (function(){
+                for(i = 0; i < dss.length; i ++)
+                    if(dss[i].title === em.constructor.name)
+                        ss = dss[i];
+            })();
+
+            cssRules = Object.values(ss.cssRules)
+                .map(function(a){
+                    return a.selectorText; })
 
         });
 
-        describe('stylesheet', function(){
+        it('creates a stylesheet with the title \'' + em.constructor.name + '\'', function(){
+            expect(ss).to.exist;
+        });
 
-            var dss = document.styleSheets,
-                ss,
-                cssRules;
+        it('creates style rules for modal outside', function(){
+            expect(cssRules).to.contain('#' + arg1 + '-modal-outside');
+        });
 
-            before(function(){
+        it('creates style rules for modal box', function(){
+            expect(cssRules).to.contain('#' + arg1 + '-modal-box');
+        });
 
-                (function(){
-                    for(i = 0; i < dss.length; i ++)
-                        if(dss[i].title === em.constructor.name)
-                            ss = dss[i];
-                })();
+        it('creates style rules for modal content', function(){
+            expect(cssRules).to.contain('#' + arg1);
+        });
 
-                cssRules = Object.values(ss.cssRules)
-                    .map(function(a){
-                        return a.selectorText; })
+        it('creates style rules for modal close', function(){
+            expect(cssRules).to.contain('#' + arg1 + '-modal-close');
+        });
 
-            });
+        it('creates style rules for modal close :hover', function(){
+            expect(cssRules).to.contain('#' + arg1 + '-modal-close:hover');
+        });
 
-            it('creates a stylesheet with a title that is the name of the module', function(){
-                expect(ss).to.exist;
-            });
+        it('creates style rules for modal close :focus', function(){
+            expect(cssRules).to.contain('#' + arg1 + '-modal-close:focus');
+        });
 
-            it('creates style rules for modal outside', function(){
-                expect(cssRules).to.contain('#' + arg1 + '-modal-outside');
-            });
-
-            it('creates style rules for modal box', function(){
-                expect(cssRules).to.contain('#' + arg1 + '-modal-box');
-            });
-
-            it('creates style rules for modal content', function(){
-                expect(cssRules).to.contain('#' + arg1);
-            });
-
-            it('creates style rules for modal close', function(){
-                expect(cssRules).to.contain('#' + arg1 + '-modal-close');
-            });
-
-            it('creates style rules for modal close :hover', function(){
-                expect(cssRules).to.contain('#' + arg1 + '-modal-close:hover');
-            });
-
-            it('creates style rules for modal close :focus', function(){
-                expect(cssRules).to.contain('#' + arg1 + '-modal-close:focus');
-            });
-
+        it('does not add the stylesheet to the end of the stylesheet list', function(){
+            if(dss.length > 1)
+                expect(dss[0].title !== ss.title);
         });
 
     });
