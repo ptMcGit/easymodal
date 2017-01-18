@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mocha</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../node_modules/mocha/mocha.css">
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script>mocha.setup('bdd')</script>
+  </head>
+  <body>
+    <script src="./bundle.js"></script>
+    <script>
+    addEventListener(
+        'load',
+        function(){
+            mocha.run();
+        },
+        false);
+    </script>
+    <div id="mocha"></div>
+
+    <div id='test-content'>
+      This is test content
+    </div>
+
+    <button id='test-button'>Test Button</button>
+
+  </body>
+</html>

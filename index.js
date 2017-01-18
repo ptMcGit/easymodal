@@ -7,7 +7,7 @@ var EasyModal;
 
     var ElementWrapper = require('./lib/element-wrapper.js');
 
-    EasyModal = function EasyModal(modalContentID, modalButtonID) {
+    EasyModal = function EasyModal(modalContentID, modalButtonID, noStyles) {
 
         if((arguments[0] === undefined) || (arguments[1] === undefined))
             throw new Error('Expected two arguments, found ' + arguments.length);
@@ -90,7 +90,7 @@ var EasyModal;
             if(dss[i].title === title)
                 ss = dss[i];
 
-        if (!ss){
+        if (!ss && !noStyles){
             ss = document.createElement('style');
             document.head.append(ss);
             ss.title = title;
