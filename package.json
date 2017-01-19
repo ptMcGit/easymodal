@@ -14,7 +14,7 @@
         "url": "https://github.com/ptMcGit/easy-modal.git"
     },
     "scripts": {
-        "build": "webpack"
+        "test": "echo 'open the html files in a browser...'"
     },
     "author": "",
     "license": "ISC"
