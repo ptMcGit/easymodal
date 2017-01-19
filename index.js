@@ -34,6 +34,7 @@ var EasyModal;
         var modalOutside = createElementWrapper('modal-outside','div');
         var modalBox = createElementWrapper('modal-box', 'div');
         var modalClose = createElementWrapper('modal-close', 'span');
+        var modalTransparency = createElementWrapper('modal-transparency', 'div');
 
         var placeholder = createElementWrapper('placeholder', 'span');
 
@@ -50,6 +51,8 @@ var EasyModal;
 
         // insert document fragment in document
         placeholder.insertAdjacentElement('beforebegin', modalOutside);
+        placeholder.insertAdjacentElement('beforebegin', modalTransparency);
+
         placeholder.remove();
 
         // create the 'X'
@@ -59,13 +62,17 @@ var EasyModal;
 
         modalButton.addEventListener(
             "click",
-            function () { modalOutside.style.display = "block"; },
+            function () {
+                modalOutside.style.display = "block";
+                modalTransparency.style.display = "block";},
             false
         );
 
         modalClose.addEventListener(
             "click",
-            function () { modalOutside.style.display = "none"; },
+            function () {
+                modalOutside.style.display = "none";
+                modalTransparency.style.display = "none";},
             false
         );
 
@@ -74,6 +81,7 @@ var EasyModal;
             function (event) {
                     if (event.target == modalOutside.element) {
                         modalOutside.style.display = "none";
+                        modalTransparency.style.display = "none";
                     }
             },
             false
@@ -108,14 +116,26 @@ var EasyModal;
             ss.insertRule('.' + modalOutside.classList[0] + '{' +
                           'display: none;' +
                           'position: fixed;' +
-                          'z-index: 1;' +
+                          'z-index: 2;' +
                           'padding-top: 1%;' +
                           'left: 0;' +
                           'top: 0;' +
                           'width: 100%;' +
                           'height: 100%;' +
                           'overflow: auto;' +
+                          '}', 0);
+
+            ss.insertRule('.' + modalTransparency.classList[0] + '{' +
+                          'display: none;' +
+                          'z-index: 1;' +
+                          'position: fixed;' +
+                          'left: 0;' +
+                          'top: 0;' +
+                          'width: 100%;' +
+                          'height: 100%;' +
+                          'overflow: auto;' +
                           'background-color: rgb(0,0,0);' +
+                          'opacity: .4;' +
                           'background-color: rgba(0,0,0,0.4);' +
                           '}', 0);
 
@@ -128,7 +148,6 @@ var EasyModal;
                           'max-width: 800px;' +
                           'border-radius: 2px;' +
                           'border-bottom: 5px solid #606060;' +
-                          'opacity: .9;' +
                           '}', 0);
 
             ss.insertRule('.' + modalContent.classList[0] + '{' +

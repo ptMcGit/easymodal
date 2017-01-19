@@ -111,34 +111,91 @@ describe('EasyModal', function(){
 
         });
 
+        describe('modal transparency', function(){
+
+            before(function(){
+                getElement('.modal-transparency');
+            });
+
+            it('is a div', function(){
+                expect(element.nodeName)
+                    .to.equal('DIV');
+            });
+
+            it('has id prefixed with first initialization argument', function(){
+                expect(element.id)
+                    .to.equal(arg1 + '-' + name);
+            });
+
+            it('has modal outside as previous sibling', function(){
+                expect(element.previousSibling.id)
+                    .to.equal(arg1 + '-' + 'modal-outside');
+            });
+
+        });
+
     });
 
     describe('event listeners', function(){
 
-        var display;
-
-        beforeEach(function(){
-            $('#' + arg2).click();
-            modalDisplay = function(){
-                return $('#' + arg1 + '-modal-outside')[0].style.display;
+        var display,
+            elementDisplay,
+            setDisplay = function(str){
+                elementDisplay = function(){
+                    return $('#' + arg1 + '-' + str)[0].style.display;
+                };
             };
+
+        describe('modal outside', function(){
+
+            before(function(){
+                setDisplay('modal-outside');
+            });
+
+            beforeEach(function(){
+                $('#' + arg2).click();
+            });
+
+            it('click on modal button changes modal outside display to block', function(){
+                expect(elementDisplay())
+                    .to.equal('block');
+            });
+
+            it('click on modal close changes modal outside display to none', function(){
+                $('#' + arg1 + '-modal-close').click();
+                expect(elementDisplay())
+                    .to.equal('none');
+            });
+
+            it('click outside modal content changes modal outside display to none', function(){
+                $('#test-content-modal-outside')[0].click()
+                expect(elementDisplay())
+                    .to.equal('none');
+            });
+
         });
 
-        it('click on modal button changes modal outside display to block', function(){
-            expect(modalDisplay())
-                .to.equal('block');
-        });
+        describe('modal transparency', function(){
 
-        it('click on modal close changes modal outside display to none', function(){
-            $('#' + arg1 + '-modal-close').click();
-            expect(modalDisplay())
-                .to.equal('none');
-        });
+            before(function(){
+                setDisplay('modal-transparency');
+            });
 
-        it('click outside modal content changes modal outside display to none', function(){
-            $('#test-content-modal-outside')[0].click()
-            expect(modalDisplay())
-                .to.equal('none');
+            beforeEach(function(){
+                $('#' + arg2).click();
+            });
+
+            it('click on modal button changes modal transparency display to block', function(){
+                expect(elementDisplay())
+                    .to.equal('block');
+            });
+
+            it('click on modal close changes modal transparency display to none', function(){
+                $('#' + arg1 + '-modal-close').click();
+                expect(elementDisplay())
+                    .to.equal('none');
+            });
+
         });
 
     });
