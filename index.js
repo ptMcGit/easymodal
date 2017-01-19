@@ -105,7 +105,7 @@ var EasyModal;
 
             ss = ss.sheet;
 
-            ss.insertRule('#' + modalOutside.id + '{' +
+            ss.insertRule('.' + modalOutside.classList[0] + '{' +
                           'display: none;' +
                           'position: fixed;' +
                           'z-index: 1;' +
@@ -119,7 +119,7 @@ var EasyModal;
                           'background-color: rgba(0,0,0,0.4);' +
                           '}', 0);
 
-            ss.insertRule('#' + modalBox.id + '{' +
+            ss.insertRule('.' + modalBox.classList[0] + '{' +
                           'background-color: #534c48;' +
                           'margin: auto;' +
                           'padding: 1%;' +
@@ -131,11 +131,11 @@ var EasyModal;
                           'opacity: .9;' +
                           '}', 0);
 
-            ss.insertRule('#' + modalContent.id + '{' +
+            ss.insertRule('.' + modalContent.classList[0] + '{' +
                           'padding: 10%;' +
                           '}', 0);
 
-            ss.insertRule('#' + modalClose.id + '{' +
+            ss.insertRule('.' + modalClose.classList[0] + '{' +
                           'font-family: Arial, san-serif;' +
                           'color: #aaaaaa;' +
                           'float: right;' +
@@ -143,12 +143,12 @@ var EasyModal;
                           'font-weight: bold;' +
                           '}', 0);
 
-            ss.insertRule('#' + modalClose.id + ':hover' + '{' +
+            ss.insertRule('.' + modalClose.classList[0] + ':hover' + '{' +
                           'text-decoration: none;' +
                           'cursor: pointer;' +
                           '}', 0);
 
-            ss.insertRule('#' + modalClose.id + ':focus' + '{' +
+            ss.insertRule('.' + modalClose.classList[0] + ':focus' + '{' +
                           'text-decoration: none;' +
                           'cursor: pointer;' +
                           '}', 0);
