@@ -32,7 +32,7 @@ var EasyModal;
         };
 
         var modalOutside = createElementWrapper('modal-outside','div');
-        var modalBox = createElementWrapper('modal-box', 'div');
+//        var modalBox = createElementWrapper('modal-box', 'div');
         var modalClose = createElementWrapper('modal-close', 'span');
         var modalTransparency = createElementWrapper('modal-transparency', 'div');
 
@@ -43,11 +43,14 @@ var EasyModal;
         var docFrag = document.createDocumentFragment();
         docFrag.append(modalOutside.element);
 
-        modalOutside.insertAdjacentElement('afterbegin', modalBox);
-        modalBox.insertAdjacentElement('afterbegin', modalClose);
-
         modalContent.insertAdjacentElement('beforebegin', placeholder);
-        modalClose.insertAdjacentElement('afterend', modalContent);
+
+        //        modalOutside.insertAdjacentElement('afterbegin', modalBox);
+        modalOutside.insertAdjacentElement('afterbegin', modalContent);
+        //        modalBox.insertAdjacentElement('afterbegin', modalClose);
+        modalContent.insertAdjacentElement('beforebegin', modalClose);
+
+        //modalClose.insertAdjacentElement('afterend', modalContent);
 
         // insert document fragment in document
         placeholder.insertAdjacentElement('beforebegin', modalOutside);
@@ -139,7 +142,8 @@ var EasyModal;
                           'background-color: rgba(0,0,0,0.4);' +
                           '}', 0);
 
-            ss.insertRule('.' + modalBox.classList[0] + '{' +
+            ss.insertRule('.' + modalContent.classList[0] + '{' +
+//            ss.insertRule('.' + modalBox.classList[0] + '{' +
                           'background-color: #534c48;' +
                           'margin: auto;' +
                           'padding: 1%;' +
@@ -148,9 +152,9 @@ var EasyModal;
                           'max-width: 800px;' +
                           'border-radius: 2px;' +
                           'border-bottom: 5px solid #606060;' +
-                          '}', 0);
-
-            ss.insertRule('.' + modalContent.classList[0] + '{' +
+//                          '}', 0);
+//
+//            ss.insertRule('.' + modalContent.classList[0] + '{' +
                           'padding: 10%;' +
                           '}', 0);
 

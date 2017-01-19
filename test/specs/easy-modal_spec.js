@@ -35,9 +35,14 @@ describe('EasyModal', function(){
                 getElement('#' + arg1);
             });
 
-            it('has the modal box as its parent element', function(){
+            // it('has the modal box as its parent element', function(){
+            //     expect(element.parentElement.id)
+            //         .to.equal(arg1 + '-' + 'modal-box');
+            // });
+
+            it('has the modal outside as its parent element', function(){
                 expect(element.parentElement.id)
-                    .to.equal(arg1 + '-' + 'modal-box');
+                    .to.equal(arg1 + '-' + 'modal-outside');
             });
 
         });
@@ -60,28 +65,28 @@ describe('EasyModal', function(){
 
         });
 
-        describe('modal box', function(){
+        // describe('modal box', function(){
 
-            before(function(){
-                getElement('.modal-box');
-            });
+        //     before(function(){
+        //         getElement('.modal-box');
+        //     });
 
-            it('is a div', function(){
-                expect(element.nodeName)
-                    .to.equal('DIV');
-            });
+        //     it('is a div', function(){
+        //         expect(element.nodeName)
+        //             .to.equal('DIV');
+        //     });
 
-            it('has id prefixed with first initialization argument', function(){
-                expect(element.id)
-                    .to.equal(arg1 + '-' + name);
-            });
+        //     it('has id prefixed with first initialization argument', function(){
+        //         expect(element.id)
+        //             .to.equal(arg1 + '-' + name);
+        //     });
 
-            it('has modal outside as its parent element', function(){
-                expect(element.parentElement.id)
-                    .to.equal(arg1 + '-' + 'modal-outside');
-            });
+        //     it('has modal outside as its parent element', function(){
+        //         expect(element.parentElement.id)
+        //             .to.equal(arg1 + '-' + 'modal-outside');
+        //     });
 
-        });
+        // });
 
         describe('modal close', function(){
 
@@ -104,9 +109,14 @@ describe('EasyModal', function(){
                     .to.not.equal('');
             });
 
-            it('has modal box as its parent element', function(){
+            // it('has modal box as its parent element', function(){
+            //     expect(element.parentElement.id)
+            //         .to.equal(arg1 + '-' + 'modal-box');
+            // });
+
+            it('has modal outside as its parent element', function(){
                 expect(element.parentElement.id)
-                    .to.equal(arg1 + '-' + 'modal-box');
+                    .to.equal(arg1 + '-' + 'modal-outside');
             });
 
         });
@@ -235,9 +245,9 @@ describe('EasyModal', function(){
             expect(cssRuleSelectors).to.contain('.modal-outside');
         });
 
-        it('creates style rules for modal box', function(){
-            expect(cssRuleSelectors).to.contain('.modal-box');
-        });
+//        it('creates style rules for modal box', function(){
+//            expect(cssRuleSelectors).to.contain('.modal-box');
+//        });
 
         it('creates style rules for modal content', function(){
             expect(cssRuleSelectors).to.contain('.modal-content');
