@@ -153,7 +153,7 @@ describe('EasyModal', function(){
 
             (function(){
                 for(i = 0; i < dss.length; i ++)
-                    if(dss[i].title === em.constructor.name)
+                    if(dss[i].id === em.constructor.name)
                         ss = dss[i];
             })();
 
@@ -169,8 +169,9 @@ describe('EasyModal', function(){
 
         });
 
-        it('creates a stylesheet with the title \'' + em.constructor.name + '\'', function(){
+        it('creates a stylesheet with the id \'' + em.constructor.name + '\'', function(){
             expect(ss).to.exist;
+            expect(ss.id).to.equal(em.constructor.name);
         });
 
         it('creates style rules for modal outside', function(){
@@ -199,7 +200,7 @@ describe('EasyModal', function(){
 
         it('does not add the stylesheet to the end of the stylesheet list', function(){
             if(dss.length > 1)
-                expect(dss[0].title !== ss.title);
+                expect(dss[0].id !== ss.id);
         });
 
     });

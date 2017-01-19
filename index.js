@@ -81,24 +81,27 @@ var EasyModal;
 
         var i,
             dss = document.styleSheets,
-            title = this.constructor.name,
+            ssName = this.constructor.name,
             ss = null;
 
         // use an existing stylesheet
 
         for (i = 0; i < dss.length; i++)
-            if(dss[i].title === title)
+            if(dss[i].ssName === ssName)
                 ss = dss[i];
 
         if (!ss && !noStyles){
-            ss = document.createElement('style');
-            document.head.append(ss);
-            ss.title = title;
-            addStyles(ss);
+           addStyleSheet();
         }
 
-        function addStyles(styleSheet){
-            var ss = styleSheet.sheet;
+        function addStyleSheet(){
+
+            var ss = document.createElement('style');
+            document.head.append(ss);
+
+            ss.sheet.id = ssName;
+
+            ss = ss.sheet;
 
             ss.insertRule('#' + modalOutside.id + '{' +
                           'display: none;' +
