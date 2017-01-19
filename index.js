@@ -5,6 +5,7 @@ var EasyModal;
 (function(){
     'use strict';
 
+    require('./vendor/prepend_polyfill.js');
     var ElementWrapper = require('./lib/element-wrapper.js');
 
     EasyModal = function EasyModal(modalContentID, modalButtonID, noStyles) {
@@ -97,7 +98,7 @@ var EasyModal;
         function addStyleSheet(){
 
             var ss = document.createElement('style');
-            document.head.append(ss);
+            document.head.prepend(ss);
 
             ss.sheet.id = ssName;
 
