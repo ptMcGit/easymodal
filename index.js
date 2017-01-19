@@ -88,7 +88,7 @@ var EasyModal;
         // use an existing stylesheet
 
         for (i = 0; i < dss.length; i++)
-            if(dss[i].ssName === ssName)
+            if(dss[i].id === ssName)
                 ss = dss[i];
 
         if (!ss && !noStyles){
