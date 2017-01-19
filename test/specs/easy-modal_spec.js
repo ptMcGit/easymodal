@@ -35,11 +35,6 @@ describe('EasyModal', function(){
                 getElement('#' + arg1);
             });
 
-            // it('has the modal box as its parent element', function(){
-            //     expect(element.parentElement.id)
-            //         .to.equal(arg1 + '-' + 'modal-box');
-            // });
-
             it('has the modal outside as its parent element', function(){
                 expect(element.parentElement.id)
                     .to.equal(arg1 + '-' + 'modal-outside');
@@ -65,29 +60,6 @@ describe('EasyModal', function(){
 
         });
 
-        // describe('modal box', function(){
-
-        //     before(function(){
-        //         getElement('.modal-box');
-        //     });
-
-        //     it('is a div', function(){
-        //         expect(element.nodeName)
-        //             .to.equal('DIV');
-        //     });
-
-        //     it('has id prefixed with first initialization argument', function(){
-        //         expect(element.id)
-        //             .to.equal(arg1 + '-' + name);
-        //     });
-
-        //     it('has modal outside as its parent element', function(){
-        //         expect(element.parentElement.id)
-        //             .to.equal(arg1 + '-' + 'modal-outside');
-        //     });
-
-        // });
-
         describe('modal close', function(){
 
             before(function(){
@@ -108,11 +80,6 @@ describe('EasyModal', function(){
                 expect(element.innerText)
                     .to.not.equal('');
             });
-
-            // it('has modal box as its parent element', function(){
-            //     expect(element.parentElement.id)
-            //         .to.equal(arg1 + '-' + 'modal-box');
-            // });
 
             it('has modal outside as its parent element', function(){
                 expect(element.parentElement.id)
@@ -244,10 +211,6 @@ describe('EasyModal', function(){
         it('creates style rules for modal outside', function(){
             expect(cssRuleSelectors).to.contain('.modal-outside');
         });
-
-//        it('creates style rules for modal box', function(){
-//            expect(cssRuleSelectors).to.contain('.modal-box');
-//        });
 
         it('creates style rules for modal content', function(){
             expect(cssRuleSelectors).to.contain('.modal-content');
