@@ -50,6 +50,7 @@ var EasyModal;
 
         // insert document fragment in document
         placeholder.insertAdjacentElement('beforebegin', modalOutside);
+        placeholder.remove();
 
         // create the 'X'
         modalClose.setInnerText("\u2573");
