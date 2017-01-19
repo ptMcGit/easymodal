@@ -2,6 +2,7 @@
     "name": "easymodal",
     "description": "Create modal from a div and a button with default styles",
     "main": "index.js",
+    "version": "1.0.0",
     "dependencies": {},
     "devDependencies": {
         "chai": "^3.5.0",
@@ -17,5 +18,5 @@
         "test": "echo 'open the html files in a browser...'"
     },
     "author": "",
-    "license": "ISC"
+    "license": "MIT"
 }
