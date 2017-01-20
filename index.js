@@ -52,18 +52,12 @@ var EasyModal;
         var docFrag = document.createDocumentFragment();
         $(docFrag).append(modalOutside.element);
 
-        //modalContent.insertAdjacentElement('beforebegin', placeholder);
         modalContent.before(placeholder);
-
-        //modalOutside.insertAdjacentElement('afterbegin', modalContent);
         modalOutside.prepend(modalContent);
-        //modalContent.insertAdjacentElement('beforebegin', modalClose);
         modalContent.before(modalClose);
 
         // insert document fragment in document
-        //       placeholder.insertAdjacentElement('beforebegin', modalOutside);
         placeholder.before(modalOutside);
-        //        placeholder.insertAdjacentElement('beforebegin', modalTransparency);
         placeholder.before(modalTransparency);
 
         placeholder.remove();
@@ -81,15 +75,6 @@ var EasyModal;
            }
         );
 
-//        modalButton.addEventListener(
-//            'click',
-//            function() {
-//                modalOutside.style.display = 'block';
-//                modalTransparency.style.display = 'block';
-//            },
-//            false
-//        );
-
         modalClose.on(
             'click',
             function() {
@@ -97,15 +82,6 @@ var EasyModal;
                 modalTransparency.style.display = 'none';
             }
         );
-
-        // modalClose.addEventListener(
-        //     'click',
-        //     function() {
-        //         modalOutside.style.display = 'none';
-        //         modalTransparency.style.display = 'none';
-        //     },
-        //     false
-        // );
 
         $(window).on(
             'click',
@@ -116,17 +92,6 @@ var EasyModal;
                     }
             }
         );
-
-        // window.addEventListener(
-        //     'click',
-        //     function(event) {
-        //             if (event.target == modalOutside.element) {
-        //                 modalOutside.style.display = 'none';
-        //                 modalTransparency.style.display = 'none';
-        //             }
-        //     },
-        //     false
-        // );
 
         // CREATE THE STYLESHEET
 
@@ -149,14 +114,7 @@ var EasyModal;
             var ss = $('<style>')
                 .prop('type', 'text/css')
                 .prependTo('head');
-//            var ss = document.createElement('style');
-//            $(document.head).prepend(ss);
 
-//            ss.sheet.id = ssName;
-
-//            ss = ss.sheet;
-
-            //            ss.insertRule('.' + modalOutside.classList[0] + '{' +
             ss.html('.' + modalOutside.classList[0] + '{' +
                     'display: none;' +
                     'position: fixed;' +
@@ -168,8 +126,6 @@ var EasyModal;
                     'height: 100%;' +
                     'overflow: auto;' +
                     '}' +
-//                    '}', 0);
-//                    ss.insertRule('.' + modalTransparency.classList[0] + '{' +
                     '.' + modalTransparency.classList[0] + '{' +
                     'display: none;' +
                     'z-index: 1;' +
@@ -183,9 +139,6 @@ var EasyModal;
                     'opacity: .4;' +
                     'background-color: rgba(0,0,0,0.4);' +
                     '}' +
-//                    '}', 0);
-
-//                    ss.insertRule('.' + modalContent.classList[0] + '{' +
                     '.' + modalContent.classList[0] + '{' +
                     'background-color: #534c48;' +
                     'margin: auto;' +
@@ -197,9 +150,6 @@ var EasyModal;
                     'border-bottom: 5px solid #606060;' +
                     'padding: 10%;' +
                     '}' +
-//                    '}', 0);
-
-//                    ss.insertRule('.' + modalClose.classList[0] + '{' +
                     '.' + modalClose.classList[0] + '{' +
                     'font-family: Arial, san-serif;' +
                     'color: #aaaaaa;' +
@@ -207,21 +157,14 @@ var EasyModal;
                     'font-size: 28px;' +
                     'font-weight: bold;' +
                     '}' +
-//                    '}', 0);
-
-                    //            ss.insertRule('.' + modalClose.classList[0] + ':hover' + '{' +
                     '.' + modalClose.classList[0] + ':hover' + '{' +
                     'text-decoration: none;' +
                     'cursor: pointer;' +
                     '}' +
-                    //'}', 0);
-
-                    //            ss.insertRule('.' + modalClose.classList[0] + ':focus' + '{' +
                     '.' + modalClose.classList[0] + ':focus' + '{' +
                     'text-decoration: none;' +
                     'cursor: pointer;' +
                     '}'
-                    //                    '}', 0);
                    )
             ss[0].sheet.id = ssName;
         }
