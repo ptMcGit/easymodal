@@ -5,7 +5,8 @@ var EasyModal;
 (function() {
     'use strict';
 
-    require('./vendor/prepend_polyfill.js');
+    var $ = require('jquery');
+
     var ElementWrapper = require('./lib/element-wrapper.js');
 
     EasyModal = function EasyModal(modalContentID, modalButtonID, noStyles) {
@@ -49,7 +50,7 @@ var EasyModal;
         // create a document fragment add elements needed to create modal
 
         var docFrag = document.createDocumentFragment();
-        docFrag.append(modalOutside.element);
+        $(docFrag).append(modalOutside.element);
 
         modalContent.insertAdjacentElement('beforebegin', placeholder);
 
@@ -115,7 +116,7 @@ var EasyModal;
 
         function addStyleSheet() {
             var ss = document.createElement('style');
-            document.head.prepend(ss);
+            $(document.head).prepend(ss);
 
             ss.sheet.id = ssName;
 
