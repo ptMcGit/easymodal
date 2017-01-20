@@ -146,68 +146,84 @@ var EasyModal;
         }
 
         function addStyleSheet() {
-            var ss = document.createElement('style');
-            $(document.head).prepend(ss);
+            var ss = $('<style>')
+                .prop('type', 'text/css')
+                .prependTo('head');
+//            var ss = document.createElement('style');
+//            $(document.head).prepend(ss);
 
-            ss.sheet.id = ssName;
+//            ss.sheet.id = ssName;
 
-            ss = ss.sheet;
+//            ss = ss.sheet;
 
-            ss.insertRule('.' + modalOutside.classList[0] + '{' +
-                          'display: none;' +
-                          'position: fixed;' +
-                          'z-index: 2;' +
-                          'padding-top: 1%;' +
-                          'left: 0;' +
-                          'top: 0;' +
-                          'width: 100%;' +
-                          'height: 100%;' +
-                          'overflow: auto;' +
-                          '}', 0);
+            //            ss.insertRule('.' + modalOutside.classList[0] + '{' +
+            ss.html('.' + modalOutside.classList[0] + '{' +
+                    'display: none;' +
+                    'position: fixed;' +
+                    'z-index: 2;' +
+                    'padding-top: 1%;' +
+                    'left: 0;' +
+                    'top: 0;' +
+                    'width: 100%;' +
+                    'height: 100%;' +
+                    'overflow: auto;' +
+                    '}' +
+//                    '}', 0);
+//                    ss.insertRule('.' + modalTransparency.classList[0] + '{' +
+                    '.' + modalTransparency.classList[0] + '{' +
+                    'display: none;' +
+                    'z-index: 1;' +
+                    'position: fixed;' +
+                    'left: 0;' +
+                    'top: 0;' +
+                    'width: 100%;' +
+                    'height: 100%;' +
+                    'overflow: auto;' +
+                    'background-color: rgb(0,0,0);' +
+                    'opacity: .4;' +
+                    'background-color: rgba(0,0,0,0.4);' +
+                    '}' +
+//                    '}', 0);
 
-            ss.insertRule('.' + modalTransparency.classList[0] + '{' +
-                          'display: none;' +
-                          'z-index: 1;' +
-                          'position: fixed;' +
-                          'left: 0;' +
-                          'top: 0;' +
-                          'width: 100%;' +
-                          'height: 100%;' +
-                          'overflow: auto;' +
-                          'background-color: rgb(0,0,0);' +
-                          'opacity: .4;' +
-                          'background-color: rgba(0,0,0,0.4);' +
-                          '}', 0);
+//                    ss.insertRule('.' + modalContent.classList[0] + '{' +
+                    '.' + modalContent.classList[0] + '{' +
+                    'background-color: #534c48;' +
+                    'margin: auto;' +
+                    'padding: 1%;' +
+                    'border: 1px solid #888;' +
+                    'width: 80%;' +
+                    'max-width: 800px;' +
+                    'border-radius: 2px;' +
+                    'border-bottom: 5px solid #606060;' +
+                    'padding: 10%;' +
+                    '}' +
+//                    '}', 0);
 
-            ss.insertRule('.' + modalContent.classList[0] + '{' +
-                          'background-color: #534c48;' +
-                          'margin: auto;' +
-                          'padding: 1%;' +
-                          'border: 1px solid #888;' +
-                          'width: 80%;' +
-                          'max-width: 800px;' +
-                          'border-radius: 2px;' +
-                          'border-bottom: 5px solid #606060;' +
-                          'padding: 10%;' +
-                          '}', 0);
+//                    ss.insertRule('.' + modalClose.classList[0] + '{' +
+                    '.' + modalClose.classList[0] + '{' +
+                    'font-family: Arial, san-serif;' +
+                    'color: #aaaaaa;' +
+                    'float: right;' +
+                    'font-size: 28px;' +
+                    'font-weight: bold;' +
+                    '}' +
+//                    '}', 0);
 
-            ss.insertRule('.' + modalClose.classList[0] + '{' +
-                          'font-family: Arial, san-serif;' +
-                          'color: #aaaaaa;' +
-                          'float: right;' +
-                          'font-size: 28px;' +
-                          'font-weight: bold;' +
-                          '}', 0);
+                    //            ss.insertRule('.' + modalClose.classList[0] + ':hover' + '{' +
+                    '.' + modalClose.classList[0] + ':hover' + '{' +
+                    'text-decoration: none;' +
+                    'cursor: pointer;' +
+                    '}' +
+                    //'}', 0);
 
-            ss.insertRule('.' + modalClose.classList[0] + ':hover' + '{' +
-                          'text-decoration: none;' +
-                          'cursor: pointer;' +
-                          '}', 0);
-
-            ss.insertRule('.' + modalClose.classList[0] + ':focus' + '{' +
-                          'text-decoration: none;' +
-                          'cursor: pointer;' +
-                          '}', 0);
+                    //            ss.insertRule('.' + modalClose.classList[0] + ':focus' + '{' +
+                    '.' + modalClose.classList[0] + ':focus' + '{' +
+                    'text-decoration: none;' +
+                    'cursor: pointer;' +
+                    '}'
+                    //                    '}', 0);
+                   )
+            ss[0].sheet.id = ssName;
         }
     };
 })();
