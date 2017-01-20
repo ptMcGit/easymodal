@@ -2,27 +2,34 @@
 
 var EasyModal;
 
-(function(){
+(function() {
     'use strict';
 
     require('./vendor/prepend_polyfill.js');
     var ElementWrapper = require('./lib/element-wrapper.js');
 
     EasyModal = function EasyModal(modalContentID, modalButtonID, noStyles) {
+        if((modalContentID === undefined) || (modalButtonID === undefined))
+            throw new Error(
+                'Expected two arguments, found ' + arguments.length
+            );
 
-        if((arguments[0] === undefined) || (arguments[1] === undefined))
-            throw new Error('Expected two arguments, found ' + arguments.length);
-
-        var modalContent = new ElementWrapper(document.querySelector(arguments[0]));
-        var modalButton = new ElementWrapper(document.querySelector(arguments[1]));
+        var modalContent = new ElementWrapper(
+            document.querySelector(modalContentID)
+        );
+        var modalButton = new ElementWrapper(
+            document.querySelector(modalButtonID)
+        );
 
         if(!(modalContent && modalButton ))
-            throw new Error('Did not find one of the element params in document.');
+            throw new Error(
+                'Did not find one of the element params in document.'
+            );
 
         modalContent.classList.add('modal-content');
         modalButton.classList.add('modal-button');
 
-        function createElementWrapper(name, element){
+        function createElementWrapper(name, element) {
             var e = document.createElement(element);
             e.id = modalContent.id + '-' + name;
             e.classList.add(name);
@@ -31,9 +38,11 @@ var EasyModal;
             return me;
         };
 
-        var modalOutside = createElementWrapper('modal-outside','div');
+        var modalOutside = createElementWrapper('modal-outside', 'div');
         var modalClose = createElementWrapper('modal-close', 'span');
-        var modalTransparency = createElementWrapper('modal-transparency', 'div');
+        var modalTransparency = createElementWrapper(
+            'modal-transparency', 'div'
+        );
 
         var placeholder = createElementWrapper('placeholder', 'span');
 
@@ -54,32 +63,34 @@ var EasyModal;
         placeholder.remove();
 
         // create the 'X'
-        modalClose.setInnerText("\u2573");
+        modalClose.setInnerText('\u2573');
 
         // ADD EVENT LISTENERS
 
         modalButton.addEventListener(
-            "click",
-            function () {
-                modalOutside.style.display = "block";
-                modalTransparency.style.display = "block";},
+            'click',
+            function() {
+                modalOutside.style.display = 'block';
+                modalTransparency.style.display = 'block';
+            },
             false
         );
 
         modalClose.addEventListener(
-            "click",
-            function () {
-                modalOutside.style.display = "none";
-                modalTransparency.style.display = "none";},
+            'click',
+            function() {
+                modalOutside.style.display = 'none';
+                modalTransparency.style.display = 'none';
+            },
             false
         );
 
         window.addEventListener(
-            "click",
-            function (event) {
+            'click',
+            function(event) {
                     if (event.target == modalOutside.element) {
-                        modalOutside.style.display = "none";
-                        modalTransparency.style.display = "none";
+                        modalOutside.style.display = 'none';
+                        modalTransparency.style.display = 'none';
                     }
             },
             false
@@ -87,10 +98,10 @@ var EasyModal;
 
         // CREATE THE STYLESHEET
 
-        var i,
-            dss = document.styleSheets,
-            ssName = this.constructor.name,
-            ss = null;
+        var i;
+        var dss = document.styleSheets;
+        var ssName = this.constructor.name;
+        var ss = null;
 
         // use an existing stylesheet
 
@@ -98,12 +109,11 @@ var EasyModal;
             if(dss[i].id === ssName)
                 ss = dss[i];
 
-        if (!ss && !noStyles){
+        if (!ss && !noStyles) {
            addStyleSheet();
         }
 
-        function addStyleSheet(){
-
+        function addStyleSheet() {
             var ss = document.createElement('style');
             document.head.prepend(ss);
 
@@ -167,9 +177,7 @@ var EasyModal;
                           'cursor: pointer;' +
                           '}', 0);
         }
-
     };
-
 })();
 
 module.exports = EasyModal;
