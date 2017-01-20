@@ -69,7 +69,7 @@ var EasyModal;
         placeholder.remove();
 
         // create the 'X'
-        modalClose.setInnerText('\u2573');
+        modalClose.text('\u2573');
 
         // ADD EVENT LISTENERS
 
