@@ -73,34 +73,60 @@ var EasyModal;
 
         // ADD EVENT LISTENERS
 
-        modalButton.addEventListener(
+        modalButton.on(
             'click',
-            function() {
-                modalOutside.style.display = 'block';
-                modalTransparency.style.display = 'block';
-            },
-            false
+           function() {
+               modalOutside.style.display = 'block';
+               modalTransparency.style.display = 'block';
+           }
         );
 
-        modalClose.addEventListener(
+//        modalButton.addEventListener(
+//            'click',
+//            function() {
+//                modalOutside.style.display = 'block';
+//                modalTransparency.style.display = 'block';
+//            },
+//            false
+//        );
+
+        modalClose.on(
             'click',
             function() {
                 modalOutside.style.display = 'none';
                 modalTransparency.style.display = 'none';
-            },
-            false
+            }
         );
 
-        window.addEventListener(
+        // modalClose.addEventListener(
+        //     'click',
+        //     function() {
+        //         modalOutside.style.display = 'none';
+        //         modalTransparency.style.display = 'none';
+        //     },
+        //     false
+        // );
+
+        $(window).on(
             'click',
             function(event) {
                     if (event.target == modalOutside.element) {
                         modalOutside.style.display = 'none';
                         modalTransparency.style.display = 'none';
                     }
-            },
-            false
+            }
         );
+
+        // window.addEventListener(
+        //     'click',
+        //     function(event) {
+        //             if (event.target == modalOutside.element) {
+        //                 modalOutside.style.display = 'none';
+        //                 modalTransparency.style.display = 'none';
+        //             }
+        //     },
+        //     false
+        // );
 
         // CREATE THE STYLESHEET
 
