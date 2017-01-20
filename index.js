@@ -26,15 +26,15 @@ var EasyModal;
                 'Did not find one of the element params in document.'
             );
 
-        modalContent.classList.add('modal-content');
-        modalButton.classList.add('modal-button');
+        modalContent.addClass('modal-content');
+        modalButton.addClass('modal-button');
 
         function createElementWrapper(name, element) {
             var e = document.createElement(element);
             e.id = modalContent.id + '-' + name;
-            e.classList.add(name);
 
             var me = new ElementWrapper(e);
+            me.addClass(name);
             return me;
         };
 
