@@ -45,21 +45,26 @@ var EasyModal;
             'modal-transparency', 'div'
         );
 
-        var placeholder = createElementWrapper('placeholder', 'span');
+        var placeholder = createElementWrapper('placeholder', 'div');
 
         // create a document fragment add elements needed to create modal
 
         var docFrag = document.createDocumentFragment();
         $(docFrag).append(modalOutside.element);
 
-        modalContent.insertAdjacentElement('beforebegin', placeholder);
+        //modalContent.insertAdjacentElement('beforebegin', placeholder);
+        modalContent.before(placeholder);
 
-        modalOutside.insertAdjacentElement('afterbegin', modalContent);
-        modalContent.insertAdjacentElement('beforebegin', modalClose);
+        //modalOutside.insertAdjacentElement('afterbegin', modalContent);
+        modalOutside.prepend(modalContent);
+        //modalContent.insertAdjacentElement('beforebegin', modalClose);
+        modalContent.before(modalClose);
 
         // insert document fragment in document
-        placeholder.insertAdjacentElement('beforebegin', modalOutside);
-        placeholder.insertAdjacentElement('beforebegin', modalTransparency);
+        //       placeholder.insertAdjacentElement('beforebegin', modalOutside);
+        placeholder.before(modalOutside);
+        //        placeholder.insertAdjacentElement('beforebegin', modalTransparency);
+        placeholder.before(modalTransparency);
 
         placeholder.remove();
 
