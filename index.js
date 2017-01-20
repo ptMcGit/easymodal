@@ -115,57 +115,87 @@ var EasyModal;
                 .prop('type', 'text/css')
                 .prependTo('head');
 
-            ss.html('.' + modalOutside.classList[0] + '{' +
-                    'display: none;' +
-                    'position: fixed;' +
-                    'z-index: 2;' +
-                    'padding-top: 1%;' +
-                    'left: 0;' +
-                    'top: 0;' +
-                    'width: 100%;' +
-                    'height: 100%;' +
-                    'overflow: auto;' +
-                    '}' +
-                    '.' + modalTransparency.classList[0] + '{' +
-                    'display: none;' +
-                    'z-index: 1;' +
-                    'position: fixed;' +
-                    'left: 0;' +
-                    'top: 0;' +
-                    'width: 100%;' +
-                    'height: 100%;' +
-                    'overflow: auto;' +
-                    'background-color: rgb(0,0,0);' +
-                    'opacity: .4;' +
-                    'background-color: rgba(0,0,0,0.4);' +
-                    '}' +
-                    '.' + modalContent.classList[0] + '{' +
-                    'background-color: #534c48;' +
-                    'margin: auto;' +
-                    'padding: 1%;' +
-                    'border: 1px solid #888;' +
-                    'width: 80%;' +
-                    'max-width: 800px;' +
-                    'border-radius: 2px;' +
-                    'border-bottom: 5px solid #606060;' +
-                    'padding: 10%;' +
-                    '}' +
-                    '.' + modalClose.classList[0] + '{' +
-                    'font-family: Arial, san-serif;' +
-                    'color: #aaaaaa;' +
-                    'float: right;' +
-                    'font-size: 28px;' +
-                    'font-weight: bold;' +
-                    '}' +
-                    '.' + modalClose.classList[0] + ':hover' + '{' +
-                    'text-decoration: none;' +
-                    'cursor: pointer;' +
-                    '}' +
-                    '.' + modalClose.classList[0] + ':focus' + '{' +
-                    'text-decoration: none;' +
-                    'cursor: pointer;' +
-                    '}'
-                   )
+            var styles = '';
+
+            var cssStyleText = function(classSelector, stylesArr) {
+                return '.' + classSelector + '{' + stylesArr.join('; ') + '}';
+            };
+
+            styles +=
+                cssStyleText(modalOutside.lastClass(),
+                             [
+                                 'display: none',
+                                 'position: fixed',
+                                 'z-index: 2',
+                                 'padding-top: 1%',
+                                 'left: 0',
+                                 'top: 0',
+                                 'width: 100%',
+                                 'height: 100%',
+                                 'overflow: auto',
+                             ]
+                            );
+
+            styles +=
+                cssStyleText(modalTransparency.lastClass(),
+                             [
+                                 'display: none',
+                                 'z-index: 1',
+                                 'position: fixed',
+                                 'left: 0',
+                                 'top: 0',
+                                 'width: 100%',
+                                 'height: 100%',
+                                 'overflow: auto',
+                                 'background-color: rgb(0,0,0)',
+                                 'opacity: .4',
+                                 'background-color: rgba(0,0,0,0.4)',
+                             ]
+                            );
+
+            styles +=
+                cssStyleText(modalContent.lastClass(),
+                             [
+                                 'background-color: #534c48',
+                                 'margin: auto',
+                                 'padding: 1%',
+                                 'border: 1px solid #888',
+                                 'width: 80%',
+                                 'max-width: 800px',
+                                 'border-radius: 2px',
+                                 'border-bottom: 5px solid #606060',
+                                 'padding: 10%',
+                             ]
+                            );
+
+            styles +=
+                cssStyleText(modalClose.lastClass(),
+                             [
+                                 'font-family: Arial, san-serif',
+                                 'color: #aaaaaa',
+                                 'float: right',
+                                 'font-size: 28px',
+                                 'font-weight: bold',
+                             ]
+                            );
+
+            styles +=
+                cssStyleText(modalClose.lastClass() + ':hover',
+                             [
+                                 'text-decoration: none',
+                                 'cursor: pointer',
+                             ]
+                            );
+
+            styles +=
+                cssStyleText(modalClose.lastClass() + ':focus',
+                             [
+                                 'text-decoration: none',
+                                 'cursor: pointer',
+                             ]
+                            );
+
+            ss.html(styles);
             ss[0].sheet.id = ssName;
         }
     };
