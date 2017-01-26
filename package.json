@@ -3,7 +3,9 @@
     "description": "Create modal from a div and a button with default styles",
     "main": "index.js",
     "version": "1.0.0",
-    "dependencies": {},
+    "dependencies": {
+        "jquery": "^3.1.1"
+    },
     "devDependencies": {
         "chai": "^3.5.0",
         "jquery": "^3.1.1",
