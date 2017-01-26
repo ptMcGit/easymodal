@@ -54,7 +54,7 @@ var EasyModal;
 
         modalContent.before(placeholder);
         modalOutside.prepend(modalContent);
-        modalContent.before(modalClose);
+        modalContent.prepend(modalClose);
 
         // insert document fragment in document
         placeholder.before(modalOutside);

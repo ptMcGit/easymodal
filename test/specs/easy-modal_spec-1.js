@@ -76,9 +76,9 @@ describe('EasyModal', function() {
                     .to.not.equal('');
             });
 
-            it('has modal outside as its parent element', function() {
+            it('has modal content as its parent element', function() {
                 expect(element.parentElement.id)
-                    .to.equal(arg1 + '-' + 'modal-outside');
+                    .to.equal(arg1);
             });
         });
 
