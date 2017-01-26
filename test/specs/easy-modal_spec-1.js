@@ -197,23 +197,23 @@ describe('EasyModal', function() {
            });
 
         it('creates style rules for modal outside', function() {
-            expect(cssRuleSelectors).to.contain('.modal-outside');
+            expect(cssRuleSelectors).to.contain('#' + arg1 + '-modal-outside');
         });
 
         it('creates style rules for modal content', function() {
-            expect(cssRuleSelectors).to.contain('.modal-content');
+            expect(cssRuleSelectors).to.contain('#' + arg1);
         });
 
         it('creates style rules for modal close', function() {
-            expect(cssRuleSelectors).to.contain('.modal-close');
+            expect(cssRuleSelectors).to.contain('#' + arg1 + '-modal-close');
         });
 
         it('creates style rules for modal close :hover', function() {
-            expect(cssRuleSelectors).to.contain('.modal-close:hover');
+            expect(cssRuleSelectors).to.contain('#' + arg1 + '-modal-close:hover');
         });
 
         it('creates style rules for modal close :focus', function() {
-            expect(cssRuleSelectors).to.contain('.modal-close:focus');
+            expect(cssRuleSelectors).to.contain('#' + arg1 + '-modal-close:focus');
         });
 
         it('does not add the stylesheet to the end of the stylesheet list',

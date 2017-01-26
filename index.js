@@ -118,11 +118,11 @@ var EasyModal;
             var styles = '';
 
             var cssStyleText = function(classSelector, stylesArr) {
-                return '.' + classSelector + '{' + stylesArr.join('; ') + '}';
+                return '#' + classSelector + '{' + stylesArr.join('; ') + '}';
             };
 
             styles +=
-                cssStyleText(modalOutside.lastClass(),
+                cssStyleText(modalOutside.id,
                              [
                                  'display: none',
                                  'position: fixed',
@@ -136,7 +136,7 @@ var EasyModal;
                             );
 
             styles +=
-                cssStyleText(modalTransparency.lastClass(),
+                cssStyleText(modalTransparency.id,
                              [
                                  'display: none',
                                  'z-index: 1',
@@ -153,7 +153,7 @@ var EasyModal;
                             );
 
             styles +=
-                cssStyleText(modalContent.lastClass(),
+                cssStyleText(modalContent.id,
                              [
                                  'background-color: #534c48',
                                  'margin: auto',
@@ -166,7 +166,7 @@ var EasyModal;
                             );
 
             styles +=
-                cssStyleText(modalClose.lastClass(),
+                cssStyleText(modalClose.id,
                              [
                                  'font-family: Arial, san-serif',
                                  'color: #aaaaaa',
@@ -177,7 +177,7 @@ var EasyModal;
                             );
 
             styles +=
-                cssStyleText(modalClose.lastClass() + ':hover',
+                cssStyleText(modalClose.id + ':hover',
                              [
                                  'text-decoration: none',
                                  'cursor: pointer',
@@ -185,7 +185,7 @@ var EasyModal;
                             );
 
             styles +=
-                cssStyleText(modalClose.lastClass() + ':focus',
+                cssStyleText(modalClose.id + ':focus',
                              [
                                  'text-decoration: none',
                                  'cursor: pointer',
