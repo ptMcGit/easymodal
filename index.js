@@ -147,8 +147,8 @@ var EasyModal;
                                  'height: 100%',
                                  'overflow: auto',
                                  'background-color: rgb(0,0,0)',
-                                 'opacity: .4',
-                                 'background-color: rgba(0,0,0,0.4)',
+                                 'opacity: .6',
+                                 'background-color: rgba(0,0,0,0.6)',
                              ]
                             );
 
@@ -156,7 +156,8 @@ var EasyModal;
                 cssStyleText(modalContent.id,
                              [
                                  'background-color: #534c48',
-                                 'margin: auto',
+                                 'margin-left: auto',
+                                 'margin-right: auto',
                                  'padding: 5%',
                                  'border: 1px solid #888',
                                  'width: 50%',
@@ -171,7 +172,7 @@ var EasyModal;
                                  'font-family: Arial, san-serif',
                                  'color: #aaaaaa',
                                  'float: right',
-                                 'font-size: 28px',
+                                 'font-size: 2em',
                                  'font-weight: bold',
                              ]
                             );
