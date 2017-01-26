@@ -127,7 +127,6 @@ var EasyModal;
                                  'display: none',
                                  'position: fixed',
                                  'z-index: 2',
-                                 'padding-top: 1%',
                                  'left: 0',
                                  'top: 0',
                                  'width: 100%',
@@ -158,13 +157,11 @@ var EasyModal;
                              [
                                  'background-color: #534c48',
                                  'margin: auto',
-                                 'padding: 1%',
+                                 'padding: 5%',
                                  'border: 1px solid #888',
-                                 'width: 80%',
-                                 'max-width: 800px',
+                                 'width: 50%',
                                  'border-radius: 2px',
                                  'border-bottom: 5px solid #606060',
-                                 'padding: 10%',
                              ]
                             );
 
