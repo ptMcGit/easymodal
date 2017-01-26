@@ -1,6 +1,23 @@
 var expect = chai.expect;
+
 describe('EasyModal', function() {
     var EasyModal = require('../../index.js');
+
+    var arg1 = 'test-content';
+    var arg2 = 'test-button';
+
+    var newEasyModal = function() {
+        return new EasyModal('#' + arg1, '#' + arg2);
+    };
+
+    var em = newEasyModal();
+
+    var getEasyModalSS = function() {
+        var i;
+        var dss = document.styleSheets;
+        for(i = 0; i < dss.length; i ++)
+            if(dss[i].id === em.constructor.name) return dss[i];
+    };
 
     describe('initialization', function() {
         it('throws an error if content id parameter not found', function() {
@@ -12,10 +29,6 @@ describe('EasyModal', function() {
                 .to.throw(Error);
         });
     });
-
-    var arg1 = 'test-content';
-    var arg2 = 'test-button';
-    var em = new EasyModal('#' + arg1, '#' + arg2);
 
     describe('property elements', function() {
         var element;
@@ -169,16 +182,10 @@ describe('EasyModal', function() {
 
     describe('stylesheet', function() {
         var dss = document.styleSheets;
-        var ss;
         var cssRuleSelectors;
+        var ss = getEasyModalSS();
 
         before(function() {
-            (function() {
-                for(i = 0; i < dss.length; i ++)
-                    if(dss[i].id === em.constructor.name)
-                        ss = dss[i];
-            })();
-
             cssRuleSelectors = (function() {
                 var selectorNames = [];
                 var i;
@@ -221,5 +228,22 @@ describe('EasyModal', function() {
                if(dss.length > 1)
                    expect(dss[0].id !== ss.id);
            });
+    });
+    describe('second modal', function() {
+        var ss = getEasyModalSS();
+
+        var dss = document.styleSheets;
+        var ssCount = dss.length;
+        var ruleCount = ss.cssRules.length;
+
+        new EasyModal('#test-content-2', '#test-button-2');
+
+        it('does not add an additional stylesheet', function() {
+            expect(ssCount).to.equal(dss.length);
+        });
+
+        it('it increases the rules by a factor of two', function() {
+            expect(ruleCount * 2).to.equal(getEasyModalSS().length);
+        });
     });
 });

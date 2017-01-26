@@ -5,7 +5,7 @@ describe('EasyModal', function() {
 
     var arg1 = 'test-content';
     var arg2 = 'test-button';
-    var em = new EasyModal('#' + arg1, '#' + arg2, true);
+    new EasyModal('#' + arg1, '#' + arg2, true);
 
     describe('stylesheets', function() {
         it('when initialized with true as the third argument,' +

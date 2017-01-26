@@ -65,14 +65,39 @@ var EasyModal;
         // create the 'X'
         modalClose.text('\u2573');
 
+        // CREATE THE STYLESHEET
+
+        var i;
+        var dss = document.styleSheets;
+        var ssName = this.constructor.name;
+        var ss = null;
+
+        // use an existing stylesheet
+
+        for (i = 0; i < dss.length; i++)
+            if(dss[i].id === ssName)
+                ss = dss[i];
+
+        if (!noStyles) {
+           addStyleSheet(ss);
+        }
+
         // ADD EVENT LISTENERS
 
         modalButton.on(
             'click',
-           function() {
-               modalOutside.style.display = 'block';
-               modalTransparency.style.display = 'block';
-           }
+            (function() {
+                var moOriginalDisplay = modalOutside.css('display');
+                var mtOriginalDisplay = modalTransparency.css('display');
+
+                modalOutside.style.display = 'none';
+                modalTransparency.style.display = 'none';
+
+                return function() {
+                    modalOutside.style.display = moOriginalDisplay;
+                    modalTransparency.style.display = mtOriginalDisplay;
+                };
+            })()
         );
 
         modalClose.on(
@@ -93,38 +118,17 @@ var EasyModal;
             }
         );
 
-        // CREATE THE STYLESHEET
-
-        var i;
-        var dss = document.styleSheets;
-        var ssName = this.constructor.name;
-        var ss = null;
-
-        // use an existing stylesheet
-
-        for (i = 0; i < dss.length; i++)
-            if(dss[i].id === ssName)
-                ss = dss[i];
-
-        if (!ss && !noStyles) {
-           addStyleSheet();
-        }
-
-        function addStyleSheet() {
-            var ss = $('<style>')
-                .prop('type', 'text/css')
-                .prependTo('head');
-
-            var styles = '';
-
+        function addStyleSheet(styleSheet) {
             var cssStyleText = function(classSelector, stylesArr) {
                 return '#' + classSelector + '{' + stylesArr.join('; ') + '}';
             };
 
+            var styles = '';
+
             styles +=
                 cssStyleText(modalOutside.id,
                              [
-                                 'display: none',
+                                 'display: block',
                                  'position: fixed',
                                  'z-index: 2',
                                  'left: 0',
@@ -138,7 +142,7 @@ var EasyModal;
             styles +=
                 cssStyleText(modalTransparency.id,
                              [
-                                 'display: none',
+                                 'display: block',
                                  'z-index: 1',
                                  'position: fixed',
                                  'left: 0',
@@ -193,8 +197,18 @@ var EasyModal;
                              ]
                             );
 
-            ss.html(styles);
-            ss[0].sheet.id = ssName;
+            var ss;
+
+            if(!styleSheet) {
+                ss = $('<style>')
+                    .prop('type', 'text/css')
+                    .prependTo('head');
+                ss.html(styles);
+                ss[0].sheet.id = ssName;
+            } else {
+                $(styleSheet.ownerNode)
+                    .html($(styleSheet.ownerNode).html() + styles);
+            }
         }
     };
 })();
