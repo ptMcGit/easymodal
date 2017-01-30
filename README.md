@@ -42,7 +42,7 @@ Descriptions of each component by way of class follow.
 
 The `modal-outside` `<div>` serves as a container for modal content.
 The `modal-close` button, which closes the modal, is prepended inside the `<div>` used to instantiate the modal.
-Just below the `modal-outside`, in the document, is the `modal-transparency` `<div>`, which is used to de-emphasize the rest of the page when the modal is active.
+Just below the `modal-outside` element, in the document, is the `modal-transparency` `<div>`, which is used to de-emphasize the rest of the page when the modal is active.
 
 Event listeners are set up so that the modal button activates the modal.
 Once the modal is activated it can be closed by clicking the `modal-close` button, or by clicking outside of the modal content area.
@@ -56,6 +56,9 @@ CSS rules, using the id as the selector,  are created for the two elements used 
 
 If the default stylesheet is not bypassed, it is prepended to the list of stylesheets.
 This, combined with the fact that each component is classed and ID'ed, makes the default styles easy to override.
+
+The fact the `EasyModal` creates a stylesheet is more of a convenience than anything.
+It is recommended that the user bypass the default stylesheet except when demoing.
 
 ## Testing ##
 
