@@ -242,8 +242,10 @@ describe('EasyModal', function() {
             expect(ssCount).to.equal(dss.length);
         });
 
+        ss = getEasyModalSS();
+
         it('it increases the rules by a factor of two', function() {
-            expect(ruleCount * 2).to.equal(getEasyModalSS().length);
+            expect(ruleCount * 2).to.equal(ss.cssRules.length);
         });
     });
 });

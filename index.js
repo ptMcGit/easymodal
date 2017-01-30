@@ -204,11 +204,12 @@ var EasyModal;
                     .prop('type', 'text/css')
                     .prependTo('head');
                 ss.html(styles);
-                ss[0].sheet.id = ssName;
             } else {
+                ss = $(styleSheet.ownerNode);
                 $(styleSheet.ownerNode)
                     .html($(styleSheet.ownerNode).html() + styles);
             }
+            ss[0].sheet.id = ssName;
         }
     };
 })();
