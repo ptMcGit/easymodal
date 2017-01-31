@@ -17,8 +17,8 @@
         "url": "https://github.com/ptMcGit/easy-modal.git"
     },
     "scripts": {
-        "test": "echo 'open the html files in a browser...'"
+        "test": "echo 'open test.html in a browser and run each spec...'"
     },
-    "author": "",
+    "author": "zdhadgraft@gtcc.edu",
     "license": "MIT"
 }
