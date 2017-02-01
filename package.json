@@ -1,8 +1,9 @@
 {
     "name": "easymodal",
-    "description": "Create modal from a div and a button with default styles",
+    "description": "Create modals with overridable default styles.",
     "main": "index.js",
     "version": "1.0.0",
+    "keywords": ["modal"],
     "dependencies": {
         "jquery": "^3.1.1"
     },
